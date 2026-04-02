@@ -47,7 +47,8 @@ jobs:
       - name: Build release APKs
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
-        run: ./gradlew assembleRelease
+          GRADLE_OPTS: -Xmx4g -Dfile.encoding=UTF-8
+        run: ./gradlew assembleRelease -Dorg.gradle.jvmargs="-Xmx4g -Dfile.encoding=UTF-8"
 
       - name: Upload APKs as artifact
         uses: actions/upload-artifact@v4
